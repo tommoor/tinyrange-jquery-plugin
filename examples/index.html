@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Jquery Tiny Range Example</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+    <script src="../jquery.range.js"></script>
+	  <link rel="stylesheet" href="../jquery.range.css" />
+    <script>
+    $(function(){
+      $('#range-1').range()
+      $('#range-1').range('set', [200, 300]);
+      $('#range-2').range({
+        range:false
+      });
+      $('#range-3').range({
+        blur:function(){
+          alert('range blur');
+        }
+      });
+    });
+    </script>
+	  <style>
+		  .range-input {
+			  width: 400px;
+			  margin: 10px 0;
+		  }
+	  </style>
+  </head>
+  <body>
+    <h2>Multiple Handles</h2>
+    <input type="range" min="0" max="500" step="20" id="range-1" />
+    
+    <h2>Single Handle</h2>
+	  <input type="range" min="0" max="1000" step="0" value="350" id="range-2" />
+	  
+	  <h2>Blur Events</h2>
+	  <input type="range" min="0" max="100" value="50" id="range-3" />
+  </body>
+</html>
