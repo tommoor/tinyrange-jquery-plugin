@@ -7,7 +7,7 @@
 	  <link rel="stylesheet" href="../jquery.range.css" />
     <script>
     $(function(){
-      $('#range-1').range()
+      $('#range-1').range();
       $('#range-1').range('set', [200, 300]);
       $('#range-2').range({
         range:false
@@ -17,6 +17,7 @@
           alert('range blur');
         }
       });
+      $('#range-4').range()
     });
     </script>
 	  <style>
@@ -35,5 +36,8 @@
 	  
 	  <h2>Blur Events</h2>
 	  <input type="range" min="0" max="100" value="50" id="range-3" />
+	  
+	  <h2>Standard Input</h2>
+	  <input type="text" min="0" max="100" value="50" id="range-4" />
   </body>
 </html>

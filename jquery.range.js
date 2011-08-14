@@ -17,6 +17,7 @@
     var $handle2;
     var $selection;
     var $dragging;
+    var $original;
     var jump;
     var size;
     var defaults = {
@@ -122,10 +123,17 @@
         prev = options.values.slice(); // clone
         options.values[0] = pxToValue($handle);
         options.values[1] = pxToValue($handle2);
+        
+        // set value on original element
+        console.log($original)
+        $original.val(options.values[0] +','+options.values[1]);
       } else {
       
         prev = options.values;
         options.values = pxToValue($handle);
+        
+        // set value on original element
+        $original.val(options.values);
       }
 
       if(options.values !== prev) options.change(options.values);
@@ -152,7 +160,7 @@
 
       if(options.snap) return Math.floor(v/options.snap) * options.snap;
 
-      return v;
+      return Math.round(v);
     };
     
     var valueToPx = function(val){
@@ -201,6 +209,7 @@
         // replace dom element
         $(this).after($input);
         $(this).hide();
+        $original = $(this);
         
         // attach events
         $(document).bind('mouseup', dragEnd);
