@@ -62,7 +62,7 @@
           boundL = $handle.position().left;
         }
       }
-
+      
       if(p >= boundR){
         p = boundR;
       } else if(p <= boundL){
@@ -115,7 +115,7 @@
     };
     
     var updateValues = function(){
-    
+
       var prev;
       if(options.range){
       
@@ -127,18 +127,19 @@
         prev = options.values;
         options.values = pxToValue($handle);
       }
-      
+
       if(options.values !== prev) options.change(options.values);
     };
     
     var updateHandles = function(){
 
-      if(options.range && options.values){
-        moveHandle($handle, valueToPx(options.values[0]), false);
-        moveHandle($handle2, valueToPx(options.values[1]), false);
-      }
-      if(options.values){
-        moveHandle($handle, valueToPx(options.values), false);
+      if (options.values){
+        if (options.range){
+          moveHandle($handle2, valueToPx(options.values[1]), false);
+          moveHandle($handle, valueToPx(options.values[0]), false);
+        } else {
+          moveHandle($handle, valueToPx(options.values), false);
+        }
       }
       
       updateValues();
@@ -148,7 +149,7 @@
       var w = $input.width()-size;
       var p = $h.position().left;
       var v = (p/(w/(options.max-options.min)))+options.min;
-      
+
       if(options.snap) return Math.floor(v/options.snap) * options.snap;
 
       return v;
@@ -167,7 +168,7 @@
     
     var methods = {
       init : function(o){
-      
+        
         // element already replaced
         if($(this).data('TinyRange')) return this;
         
@@ -186,7 +187,7 @@
         } else {
           options.values = parseFloat($(this).attr('value'));
         }
-        
+ 
         // how far do handles jump on click, default to step value
         jump = options.snap ? options.snap : options.max/10;
 
@@ -208,7 +209,7 @@
         // position handles
         size = $handle.width();
         updateHandles();
-
+        
         return this;
       },
       set: function(input){
