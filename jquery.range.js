@@ -125,7 +125,6 @@
         options.values[1] = pxToValue($handle2);
         
         // set value on original element
-        console.log($original)
         $original.val(options.values[0] +','+options.values[1]);
       } else {
       
