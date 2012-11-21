@@ -163,7 +163,7 @@
     };
     
     var valueToPx = function(val){
-      var w = $input.width();
+      var w = $input.width()-size;
       var v = (val*(w/(options.max-options.min)))-options.min;
       
       return v;
