@@ -76,7 +76,7 @@
       }
       
       $h.css({'left': p, 'position': 'absolute'});
-      if(options.range) updateSelection();
+      updateSelection();
       if(update !== false) updateValues();
     }
     
@@ -98,13 +98,14 @@
     };
     
     var updateSelection = function(){
-    
-      var p = $handle.position().left;
-      var w = $handle2.position().left-p;
+      var w, p = $handle.position().left;
+      if (options.range) {
+        w = $handle2.position().left - p;
+      }
+      
       $selection.css({
-        'left': p, 
-        'width': w,
-        'position': 'absolute'
+        'left': options.range? p: 0, 
+        'width': options.range? w: p
       });
     };
     
@@ -201,7 +202,7 @@
         // create dom elements
         $input  = $('<div/>', {'class': 'range-input'}).mousedown(jumpHandle);
         $rail   = $('<div/>', {'class': 'range-rail'}).appendTo($input);
-        if(options.range) $selection = $('<div/>', {'class': 'range-selection'}).appendTo($input); 
+        $selection = $('<div/>', {'class': 'range-selection'}).appendTo($input); 
         $handle = $('<a/>', {'class': 'range-handle'}).appendTo($input).mousedown(dragStart);
         if(options.range) $handle2 = $handle.clone(true).appendTo($input);
         
